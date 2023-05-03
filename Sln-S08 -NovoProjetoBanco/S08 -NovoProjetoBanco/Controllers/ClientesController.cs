@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using S08__NovoProjetoBanco.Models;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using S08__NovoProjetoBanco.Interfaces;
+using S08__NovoProjetoBanco.Models;
+using S08__NovoProjetoBanco.Services;
 
 namespace S08__NovoProjetoBanco.Controllers
 {
-
-    [Route("clientes")]
+    [Route("clientes]")]
+    [ApiController]
     public class ClientesController : Controller
-
     {
-        private interface IClienteServices _clienteServices();
+        IClienteServices _clienteServices;
 
         public ClientesController(IClienteServices clienteServices)
         {
@@ -20,28 +21,28 @@ namespace S08__NovoProjetoBanco.Controllers
         [Route("pessoaFisica")]
         public ActionResult ExibirPessoaFisica()
         {
-            return Ok(_clienteServices.ExibirClientesPF());
+            return Ok(_clienteServices.MostrarClientesPF());
         }
 
         [HttpGet]
         [Route("pessoaJuridica")]
         public ActionResult ExibirPessoaJuridica()
         {
-            return Ok(_clienteServices.ExibirClientesPF());
+            return Ok(_clienteServices.MostrarClientesPJ());
         }
 
         [HttpGet]
         [Route("{id}")]
         public ActionResult GetPorId([FromRoute] int id)
         {
-            return Ok(_clienteServices.BuscarCliente());
+            return Ok(_clienteServices.BuscarCliente(id));
         }
 
         [HttpPost]
         [Route("pessoaFisica")]
         public ActionResult PostPessoaFisica([FromBody] PessoaFisica pessoaFisica)
         {
-            _clienteServices.CriarConta(pessoaFisica);
+            _clienteServices.NovaConta(pessoaFisica);
             return Created(Request.Path, pessoaFisica);
         }
 
@@ -49,7 +50,7 @@ namespace S08__NovoProjetoBanco.Controllers
         [Route("pessoaJuridica")]
         public ActionResult PostPessoaJuridica([FromBody] PessoaJuridica pessoaJuridica)
         {
-            _clienteServices.CriarConta(pessoaJuridica);
+            _clienteServices.NovaConta(pessoaJuridica);
             return Created(Request.Path, pessoaJuridica);
         }
 
@@ -84,10 +85,3 @@ namespace S08__NovoProjetoBanco.Controllers
         }
     }
 }
-
-
-
-
-
-
-

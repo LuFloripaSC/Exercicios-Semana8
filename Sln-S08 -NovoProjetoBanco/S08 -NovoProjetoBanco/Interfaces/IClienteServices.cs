@@ -8,7 +8,7 @@ namespace S08__NovoProjetoBanco.Interfaces
     {
         void NovaConta(Cliente cliente);
         List<PessoaFisica> MostrarClientesPF();
-        List<PessoaJuridica> MostrarClientesJP();
+        List<PessoaJuridica> MostrarClientesPJ();
         Cliente BuscarCliente(int id);
         Cliente AtualizarPessoaFisica(PessoaFisica pessoaFisica, int id);
         Cliente AtualizarPessoaJuridica(PessoaJuridica pessoaJuridica, int id);
